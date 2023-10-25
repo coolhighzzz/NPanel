@@ -1,0 +1,127 @@
+<!-- admin.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - NPANEL</title>
+  <style>
+    body {
+      background-color: #2b2b2b;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #2c2c2c;
+      padding: 10px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .admin-text {
+      color: #00ff00;
+      font-weight: bold;
+      font-size: 18px;
+      text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+      cursor: pointer;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .panel {
+      background-color: #3b3b3b;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .panel h1 {
+      color: #F70000;
+      margin-bottom: 20px;
+    }
+
+    .admin-info {
+      color: #00ff00;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .admin-button {
+      background-color: #00ff00;
+      color: #000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      margin: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+
+    .admin-button:hover {
+      background-color: #009900;
+      color: #fff;
+    }
+  </style>
+  <script>
+    // Function to simulate creating a server (replace with your actual logic)
+    function createServer() {
+      alert('Creating a new server...');
+    }
+
+    // Function to simulate deleting a server (replace with your actual logic)
+    function deleteServer(serverId) {
+      const confirmDelete = confirm(`Are you sure you want to delete server ${serverId}?`);
+      if (confirmDelete) {
+        alert(`Deleting server ${serverId}...`);
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="header">
+    <h1>NPANEL Admin Panel</h1>
+    <!-- Display "Admin" text only for admin users with a clickable link -->
+    <% if (user && user.role === 'admin') { %>
+      <div class="admin-text" onclick="redirectToAdmin()">Admin</div>
+    <% } %>
+  </div>
+
+  <div class="container">
+    <div class="panel">
+      <h1>Welcome, Admin!</h1>
+      <p class="admin-info">You have access to administrative features.</p>
+      <div class="button-container">
+        <!-- Interactive buttons for admin actions -->
+        <button class="admin-button" onclick="createServer()">Create Server</button>
+        <button class="admin-button" onclick="deleteServer(1)">Delete Server 1</button>
+        <button class="admin-button" onclick="deleteServer(2)">Delete Server 2</button>
+        <!-- Add more buttons as needed -->
+      </div>
+    </div>
+  </div>
+</body>
+</html>

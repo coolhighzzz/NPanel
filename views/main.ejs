@@ -1,0 +1,195 @@
+<!-- main.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NPANEL</title>
+  <style>
+    /* ... (previous styles remain unchanged) */
+    body {
+      background-color: #303030;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #404040;
+      padding: 10px;
+    }
+
+    .header h1 {
+      margin: 0;
+    }
+
+    .admin-text {
+      color: #00ff00; /* Green color for admin text */
+      font-weight: bold;
+      font-size: 18px;
+      text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00; /* Glowing effect */
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .panel {
+      background-color: #333333;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .panel h1 {
+      color: #F70000;
+      margin-bottom: 20px;
+    }
+
+    .server-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .server-card {
+      background-color: #444;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin: 10px;
+      text-align: center;
+      width: 200px;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .server-card:hover {
+      background-color: #555;
+    }
+
+    .server-card h2 {
+      color: #F70000;
+      margin-bottom: 10px;
+    }
+
+    .server-card p {
+      color: #fff;
+    }
+
+    .connect-card {
+      background-color: #555;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin: 10px;
+      text-align: center;
+      width: 200px;
+      display: none; /* Initially hidden */
+    }
+
+    .connect-card h2 {
+      color: #00ff00;
+      margin-bottom: 10px;
+    }
+
+    .connect-card p {
+      color: #fff;
+    }
+
+    .connect-button {
+      background-color: #00ff00;
+      color: #000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
+
+    .connect-button:hover {
+      background-color: #009900;
+      color: #fff;
+    }
+  </style>
+  <script>
+    function showConnectForm() {
+      // Display the form to enter SSH connection details
+      document.getElementById('connect-card').style.display = 'block';
+    }
+
+    function connectToVPS() {
+      // Collect SSH connection details from the form
+      const ip = document.getElementById('ip').value;
+      const password = document.getElementById('password').value;
+      const port = document.getElementById('port').value;
+
+      // Perform any necessary validation
+
+      // Use the collected details to display a terminal-like interface
+      const terminalOutput = document.getElementById('terminal-output');
+      terminalOutput.innerHTML = `<pre>Connecting to VPS...\n\nUsername: root\nPassword: ${password}\n\nWelcome to your VPS!\n</pre>`;
+    }
+
+    function redirectToAdmin() {
+      // Redirect to example.com
+      window.location.href = 'https://example.com';
+    }
+  </script>
+</head>
+<body>
+  <div class="header">
+    <h1>NPANEL</h1>
+    <!-- Display "Admin" text only for admin users with a clickable link -->
+    <% if (user && user.role === 'admin') { %>
+      <div class="admin-text" onclick="redirectToAdmin()">Admin</div>
+    <% } %>
+  </div>
+
+  <div class="container">
+    <div class="panel">
+      <h1>Welcome to NPANEL</h1>
+      <!-- Display the server cards for VPS trial -->
+      <div class="server-list">
+        <div class="server-card" onclick="showConnectForm()">
+          <h2>Server 1</h2>
+          <p>: Could Not fetch :</p>
+          <!-- Add the manage button -->
+          <a href="https://example.com" class="connect-button">Manage</a>
+        </div>
+        <!-- Add more server cards as needed -->
+        <div class="server-card" onclick="showConnectForm()">
+          <h2>Server 2</h2>
+          <p>: Could Not fetch :</p>
+          <!-- Add the manage button -->
+          <a href="https://example.com" class="connect-button">Manage</a>
+        </div>
+        <div class="server-card" onclick="showConnectForm()">
+          <h2>Server 3</h2>
+          <p>: Could Not fetch :</p>
+          <!-- Add the manage button -->
+          <a href="https://example.com" class="connect-button">Manage</a>
+        </div>
+        <div class="server-card" onclick="showConnectForm()">
+          <h2>Server 4</h2>
+          <p>: Could Not fetch :</p>
+          <!-- Add the manage button -->
+          <a href="https://example.com" class="connect-button">Manage</a>
+        </div>
+      </div>
+      <!-- Connect card for SSH details -->
+      </div>
+    </div>
+  </div>
+</body>
+</html>
